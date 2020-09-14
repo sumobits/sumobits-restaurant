@@ -1,0 +1,39 @@
+{
+  "name": "sumobits-restaurant-server",
+  "version": "0.0.1",
+  "description": "An API service serving provided JSON data via exposed routes.",
+  "main": "index.js",
+  "author": "Tim Cook<codeguru@austin.rr.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf node_modules && rm -f yarn.lock && yarn cache clean",
+    "format": "prettier-eslint --write $PWD/src/**/*.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "reinstall": "rm -rf node_modules && rm -f yarn.lock && yarn cache clean && yarn install",
+    "start": "npx ./dist/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "babel-eslint": "^10.1.0",
+    "del": "^5.1.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "prettier": "^2.1.1",
+    "prettier-eslint-cli": "^5.0.0"
+  }
+}
