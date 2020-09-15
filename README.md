@@ -3,7 +3,7 @@
 ## This repository consists of two projects client and server.
 
 ### Server
-Node.js providing APIs to access
+Node.js server using Express to provide APIs to access provided resaurant listings.
 
 **Usage**
 - Prerequisit
