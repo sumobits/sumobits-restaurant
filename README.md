@@ -28,7 +28,7 @@ React application consuming the APIs exposed by the server.
 - Run
 `yarn run webapp` or `npm run webapp`
 - Verify
-Open browser and navigate to `http:\\localhost:8080`
+Open browser and navigate to `http:\\localhost:8080`<br/>
 You should see the provided data set presented.
 
 ## Have fun!
