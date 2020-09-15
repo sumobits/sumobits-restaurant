@@ -6,6 +6,9 @@
 Node.js providing APIs to access
 
 **Usage**
+- Prerequisit
+You will need to install Gulp globally so that transpilation can occur.
+`yarn global add gulp-cli` or `npm install --global gulp-cli`
 - Install
 `yarn install` or `npm install`
 - Run

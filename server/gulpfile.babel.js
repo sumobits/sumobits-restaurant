@@ -9,12 +9,22 @@ const fs = require('fs');
 const path = require('path');
 
 const target = path.join(__dirname, '/dist');
+const welcome = path.join(__dirname, 'public', 'index.html');
+const dataFile = path.join(__dirname, 'data', 'restaurants.json');
 
-gulp.task('package', () => {    
+const prepareDist = () => {
     if (fs.existsSync(target)) {
         del.sync([target]);
     }
-    
+
+    fs.mkdirSync(target);
+    fs.copyFileSync(dataFile, path.join(target, 'restaurants.json'));
+    fs.copyFileSync(welcome, path.join(target, 'index.html'));
+};
+
+gulp.task('package', () => {    
+    prepareDist();
+
     return gulp.src('src/*.js')
         .pipe(sourcemaps.init())
         .pipe(eslint())
@@ -27,12 +37,9 @@ gulp.task('package', () => {
 });
 
 gulp.task('package-debug', () => {
+    prepareDist();
 
-    if (fs.existsSync(target)) {
-       del.sync([target]);
-   }
-
-   return gulp.src('src/*.js')
+    return gulp.src('src/*.js')
         .pipe(sourcemaps.init())
         .pipe(eslint())
         .pipe(eslint.format())
