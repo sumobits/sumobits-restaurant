@@ -30,4 +30,4 @@ React application consuming the APIs exposed by the server.
 Open browser and navigate to `http:\\localhost:8080`
 You should see the provided data set presented.
 
-
+## Have fun!
