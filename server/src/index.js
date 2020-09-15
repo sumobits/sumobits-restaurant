@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/restaurants', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.json(JSON.parse(
 		fs.readFileSync(path.join(__dirname, 'restaurants.json'))));
 });
