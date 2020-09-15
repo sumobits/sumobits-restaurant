@@ -1,4 +1,4 @@
-# Application to demonstrate proficency in React and Node for Charter Communications interview.
+# Application providing client/server functionality for restaurant listings.
 
 ## This repository consists of two projects client and server.
 
@@ -11,8 +11,8 @@ Node.js providing APIs to access
 - Run
 `yarn run service` or `npm run service`
 - Verify
-Open browser and navigate to `http:\\localhost:3000\charter`. 
-If you see welcome Charter you are good to start the client.
+Open browser and navigate to `http:\\localhost:3000`. 
+If you see welcome screen you are good to start the client.
 
 
 ### Client
