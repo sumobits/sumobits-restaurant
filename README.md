@@ -7,16 +7,17 @@ Node.js providing APIs to access
 
 **Usage**
 - Prerequisit
-You will need to install Gulp globally so that transpilation can occur.
+You will need to install Gulp globally so that transpilation can occur.<br/>
 `yarn global add gulp-cli` or `npm install --global gulp-cli`
 - Install
 `yarn install` or `npm install`
 - Run
 `yarn run service` or `npm run service`
 - Verify
-Open browser and navigate to `http:\\localhost:3000`. 
-If you see welcome screen you are good to start the client.
-
+Open browser and navigate to `http:\\localhost:3000`. <br/>
+If you see welcome screen you are good to start the client.<br/>
+If you like you can verify the serving of the data by accessing:<br/>
+`http:\\localhost:3000\restaurants`
 
 ### Client
 React application consuming the APIs exposed by the server.
