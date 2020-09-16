@@ -56,7 +56,7 @@ export default class Table extends React.PureComponent {
                     {
                         fields.map(field => {
                             return(
-                                <td>
+                                <td key={row.id + '-' + field}>
                                     { field }
                                 </td>
                             )
