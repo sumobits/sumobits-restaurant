@@ -1,0 +1,14 @@
+.filterContainer {
+    background-color: #282c34;
+    display: flex;
+    padding-bottom: 8px;
+}
+
+.filterGenre {
+    margin-right: 40px;
+}
+
+.filterState {
+    flex: 1;
+}
+
