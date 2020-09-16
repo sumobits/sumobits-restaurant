@@ -39,10 +39,23 @@ export default class Table extends React.PureComponent {
         );
     }
 
+    // enderTableData() {
+    //     return this.state.students.map((student, index) => {
+    //         let col = Object.keys(student)
+    //         return (
+    //             <tr key={student.id}>
+    //                 {col.map((val, index) => {
+    //                     return <td key={index}>{student[col[index]]}</td>
+    //                 })}
+    //             </tr>
+    //         )
+    //     })
+    // }
+
     renderBody (rows) {
         if (!rows) return;
         
-        rows.map(row => {
+        return rows.map(row => {
             let fields = [];
 
             for (let key in row) {
@@ -56,8 +69,8 @@ export default class Table extends React.PureComponent {
                     {
                         fields.map(field => {
                             return(
-                                <td key={ row.id }>
-                                    {field}
+                                <td>
+                                    { field }
                                 </td>
                             )
                         })
