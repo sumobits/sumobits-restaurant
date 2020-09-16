@@ -5,6 +5,8 @@ import React from 'react';
 import { initCaps } from '../utils';
 import './Table.css';
 
+const pageSize = 10;
+
 const visibleColumns = [
     'name', 
     'city', 
@@ -14,8 +16,26 @@ const visibleColumns = [
 ];
 
 export default class Table extends React.PureComponent {
+    onNextPage () {
+        this.setState({
+            currentPage: (this.state.currentPage + pageSize),
+        })
+    }
+
+    onPreviousPage () {
+        if (this.state.currentPage !== 0) {
+            this.setState({
+                currentPage: (this.state.currentPage - pageSize),
+            })
+        }
+    }
+
     onHeaderClick (header) {
-        console.log(`Header ${header} clicked`);
+        console.log(`Header ${header} clicked, need to sort`);
+    }
+
+    onRowClick (row) {
+        console.log(`Row ${row.id} clicked, show modal`);
     }
 
     renderHeader (headerRow) {
@@ -52,7 +72,7 @@ export default class Table extends React.PureComponent {
             }
 
             return (
-                <tr>
+                <tr key={row.id} onClick={e => { this.onRowClick(row) }}>
                     {
                         fields.map(field => {
                             return(
@@ -67,8 +87,50 @@ export default class Table extends React.PureComponent {
         });
     }
 
+    renderFooter (count) {
+        let pageCount = 0;
+        const renderPageButton = () => {
+            for (; pageCount < count; pageCount++) {
+                return (
+                    <li>
+                        <button class="active">
+                            <span>
+                                { pageCount + 1 }
+                            </span>
+                        </button>
+                    </li>
+                );
+            }
+        };
+
+        return (
+            <div>
+                <tr>
+                    <td colSpan={ count }>
+                        <ul>
+                            <li>
+                                <button onClick={this.onPreviousPage}>
+                                    <span>Previous</span>
+                                </button>
+                            </li>
+                            {
+                                renderPageButton()
+                            }
+                            <li>
+                                <button onClick={this.onNextPage}>
+                                    <span>Next</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </div>
+        );
+    }
+
     render () {
         const { data } = this.props;
+        const numPages = Math.ceil(data.length / pageSize);
 
         return (
             <div className='datagrid'>
@@ -76,6 +138,9 @@ export default class Table extends React.PureComponent {
                     <thead>
                         { this.renderHeader(data[0]) }
                     </thead>
+                    <tfoot>
+                        {this.renderFooter(numPages)}
+                    </tfoot>
                     <tbody>
                         { this.renderBody(data) }
                     </tbody>
