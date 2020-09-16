@@ -28,7 +28,7 @@ export default class Table extends React.PureComponent {
                         if (visibleColumns.indexOf(key) !== -1) {
                             return (
                                 <th key={key} onClick={e => { this.onHeaderClick(key) }}>
-                                    { initCaps(key)}
+                                    { initCaps(key) }
                                 </th>
                             )
                         }
@@ -43,7 +43,7 @@ export default class Table extends React.PureComponent {
         if (!rows) return;
         
         rows.map(row => {
-            const fields = [];
+            let fields = [];
 
             for (let key in row) {
                 if (row.hasOwnProperty(key) && visibleColumns.indexOf(key) !== -1) {
@@ -52,7 +52,7 @@ export default class Table extends React.PureComponent {
             }
 
             return (
-                <tr key={ row.id }>
+                <tr>
                     {
                         fields.map(field => {
                             return(

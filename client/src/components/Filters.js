@@ -2,7 +2,6 @@
  * @format
  */
 import React from 'react';
-import { initCaps } from '../utils';
 import './Filters.css';
 
 export default class Filters extends React.PureComponent {
