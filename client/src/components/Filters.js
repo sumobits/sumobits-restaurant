@@ -16,7 +16,7 @@ export default class Filters extends React.PureComponent {
         return (
             <div className='filterContainer'>
                 <div className='filterState'>
-                    <input list='states' name='states' placeholder='Filter by State' />
+                    <input className='filterStateInput' list='states' name='states' placeholder='Filter by State' />
                     <datalist id='states'>
                         {
                             states.map(state => {

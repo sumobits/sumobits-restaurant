@@ -11,3 +11,8 @@
 .filterState {
     flex: 1;
 }
+
+.filterStateInput {
+    float: left;
+    margin-left: 8px;
+}
