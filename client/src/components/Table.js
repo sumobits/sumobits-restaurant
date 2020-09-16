@@ -88,24 +88,25 @@ export default class Table extends React.PureComponent {
     }
 
     renderFooter (count) {
-        let pageCount = 0;
-        const renderPageButton = () => {
-            for (; pageCount < count; pageCount++) {
-                return (
-                    <li>
-                        <button class="active">
+        const renderPageButtons = () => {
+            let buttons = [];
+            for (let pageCount = 0; pageCount < count; pageCount++) {
+                buttons.push((
+                    <li key={pageCount}>
+                        <button className="active">
                             <span>
-                                { pageCount + 1 }
+                                {pageCount + 1}
                             </span>
                         </button>
                     </li>
-                );
+                ));
             }
+
+            return buttons;
         };
 
         return (
-            <div>
-                <tr>
+                <tr className='paging'>
                     <td colSpan={ count }>
                         <ul>
                             <li>
@@ -114,7 +115,7 @@ export default class Table extends React.PureComponent {
                                 </button>
                             </li>
                             {
-                                renderPageButton()
+                                renderPageButtons()
                             }
                             <li>
                                 <button onClick={this.onNextPage}>
@@ -124,7 +125,6 @@ export default class Table extends React.PureComponent {
                         </ul>
                     </td>
                 </tr>
-            </div>
         );
     }
 
