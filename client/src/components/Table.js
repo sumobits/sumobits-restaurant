@@ -16,6 +16,19 @@ const visibleColumns = [
 ];
 
 export default class Table extends React.PureComponent {
+    constructor (props) {
+        super();
+
+        this.setState({
+            currentPage: 0,
+            restaurants: props.restaurants,
+        })
+    }
+
+    sortTable (col, order) {
+            
+    }
+
     onNextPage () {
         this.setState({
             currentPage: (this.state.currentPage + pageSize),
