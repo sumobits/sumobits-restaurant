@@ -31,6 +31,22 @@ export const getObjectPropertyValues = (obj, prop) => {
     return props;
 };
 
+export const collectProps = (sortedArray, prop) => {
+    let props = [];
+
+    sortedArray.forEach(entry => {
+        Object.keys(entry).forEach(key => {
+            if (entry.hasOwnProperty(key)) {
+                if (key === prop) {
+                    props.push(entry[key]);
+                }
+            }
+        });
+    });
+
+    return props;
+};
+
 export const dedupeArray = array => {
     if (!array) return [];
 

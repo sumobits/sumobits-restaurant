@@ -4,7 +4,10 @@
 import React from 'react';
 import Filters from './Filters';
 import Table from './Table';
-import { getObjectPropertyValues } from '../utils';
+import {
+    collectProps,
+    dedupeArray, 
+} from '../utils';
 
 const endpoint = 'http://localhost:3000/restaurants';
 
@@ -57,7 +60,8 @@ export default class RestrauntContainer extends React.PureComponent {
     render () {
         const { 
             error, 
-            fetched, 
+            fetched,
+            filteredRestraunts = false,
             restaurants
         } = this.state;
 
@@ -69,17 +73,42 @@ export default class RestrauntContainer extends React.PureComponent {
         }
         else {
             const sortedRestraunts = restaurants.sort(sortDataByName('name'));
-            const states = restaurants.map(restaurant => {
-                return getObjectPropertyValues(restaurant, 'state');
-            });
-            const genres = restaurants.map(restaurant => {
-                return getObjectPropertyValues(restaurant, 'genre');
-            });
+            const states = collectProps(sortedRestraunts, 'state');
+            const genres = collectProps(sortedRestraunts, 'genre');
+            const onGenreSelect = genre => {
+                if (genre && genre.length) {
+                    this.setState({
+                        filteredRestraunts: sortedRestraunts.filter(restaurant =>
+                            restaurant['genre'] === genre)
+                    });
+                } else {
+                    this.setState({
+                        filteredRestraunts: false,
+                    });
+                }
+            };
+            const onStateSelect = state => {
+                if (state && state.length) {
+                    this.setState({
+                        filteredRestraunts: sortedRestraunts.filter(restaurant =>
+                            restaurant['state'] === state)
+                    });
+                } else {
+                    this.setState({
+                        filteredRestraunts: false,
+                    });
+                }
+            };
 
             return (
                 <div>
-                    <Filters genres={ [...new Set(genres)] } states={ [...new Set(states)] } />
-                    <Table data={ sortedRestraunts } />
+                    <Filters 
+                        genres={dedupeArray(genres)} 
+                        states={dedupeArray(states)}
+                        onGenreSelect={onGenreSelect}
+                        onStateSelect={onStateSelect}
+                    />
+                    <Table data={ filteredRestraunts || sortedRestraunts } />
                 </div>
             );
         }

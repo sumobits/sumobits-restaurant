@@ -18,28 +18,38 @@ const visibleColumns = [
 export default class Table extends React.PureComponent {
     constructor (props) {
         super();
-
-        this.setState({
+        this.state = {
             currentPage: 0,
             restaurants: props.restaurants,
-        })
+            sort: {
+                col: 'name',
+                direction: 'asc',
+            },
+        };
     }
 
+    componentDidMount () {}
+
     sortTable (col, order) {
-            
+        this.setState({
+            sorting: {
+                col: col,
+                direction: order,
+            },
+        });
     }
 
     onNextPage () {
         this.setState({
             currentPage: (this.state.currentPage + pageSize),
-        })
+        });
     }
 
     onPreviousPage () {
         if (this.state.currentPage !== 0) {
             this.setState({
                 currentPage: (this.state.currentPage - pageSize),
-            })
+            });
         }
     }
 
