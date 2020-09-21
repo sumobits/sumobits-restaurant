@@ -7,26 +7,10 @@ import Table from './Table';
 import {
     collectProps,
     dedupeArray, 
+    sortObjectByProp,
 } from '../utils';
 
 const endpoint = 'http://localhost:3000/restaurants';
-
-const sortDataByName = prop => {
-    return (obj1, obj2) => {
-        const val1 = obj1[prop].toUpperCase();
-        const val2 = obj2[prop].toUpperCase();
-
-        if (val1 < val2) {
-            return -1;
-        }
-        else if (val1 > val2) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    };
-};
 
 export default class RestrauntContainer extends React.PureComponent {
     constructor(){
@@ -72,7 +56,7 @@ export default class RestrauntContainer extends React.PureComponent {
             return <div>Loading ....</div>
         }
         else {
-            const sortedRestraunts = restaurants.sort(sortDataByName('name'));
+            const sortedRestraunts = restaurants.sort(sortObjectByProp('name'));
             const states = collectProps(sortedRestraunts, 'state');
             const genres = collectProps(sortedRestraunts, 'genre');
             const onGenreSelect = genre => {

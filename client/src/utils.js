@@ -60,3 +60,20 @@ export const dedupeArray = array => {
 
     return unique;
 };
+
+export const sortObjectByProp = prop => {
+    return (obj1, obj2) => {
+        const val1 = obj1[prop].toUpperCase();
+        const val2 = obj2[prop].toUpperCase();
+
+        if (val1 < val2) {
+            return -1;
+        }
+        else if (val1 > val2) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    };
+};

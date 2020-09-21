@@ -2,7 +2,7 @@
  * @format
  */
 import React from 'react';
-import { initCaps } from '../utils';
+import { initCaps , sortObjectByProp} from '../utils';
 import './Table.css';
 
 const pageSize = 10;
@@ -20,23 +20,9 @@ export default class Table extends React.PureComponent {
         super();
         this.state = {
             currentPage: 0,
-            restaurants: props.restaurants,
-            sort: {
-                col: 'name',
-                direction: 'asc',
-            },
+            restaurants: props.data,
+            sortBy: 'name',
         };
-    }
-
-    componentDidMount () {}
-
-    sortTable (col, order) {
-        this.setState({
-            sorting: {
-                col: col,
-                direction: order,
-            },
-        });
     }
 
     onNextPage () {
@@ -54,7 +40,9 @@ export default class Table extends React.PureComponent {
     }
 
     onHeaderClick (header) {
-        console.log(`Header ${header} clicked, need to sort`);
+        this.setState({
+            sortBy: header,
+        });
     }
 
     onRowClick (row) {
@@ -152,20 +140,20 @@ export default class Table extends React.PureComponent {
     }
 
     render () {
-        const { data } = this.props;
-        const numPages = Math.ceil(data.length / pageSize);
+        const { restaurants, sortBy } = this.state;
+        const numPages = Math.ceil(restaurants.length / pageSize);
 
         return (
             <div className='datagrid'>
                 <table>
                     <thead>
-                        { this.renderHeader(data[0]) }
+                        { this.renderHeader(restaurants[0]) }
                     </thead>
                     <tfoot>
-                        {this.renderFooter(numPages)}
+                        { this.renderFooter(numPages) }
                     </tfoot>
                     <tbody>
-                        { this.renderBody(data) }
+                        { this.renderBody(restaurants.sort(sortObjectByProp(sortBy))) }
                     </tbody>
                 </table>
             </div>
